@@ -53,6 +53,3 @@ dkms.conf
 
 # debug information files
 *.dwo
-
-# 忽略整个项目所有目录下的无后缀可执行文件（C语言编译产物）
-**/!(*.*)
