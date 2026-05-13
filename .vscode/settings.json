@@ -1,7 +1,38 @@
 {
-    // 强制Code Runner生成.exe文件，解决无后缀问题
+    // ====================== C/C++ 编译器配置（强制指定MinGW路径） ======================
+    // 这里改成你自己的MinGW安装路径！
+    "C_Cpp.default.compilerPath": "C:\\mingw64\\bin\\gcc.exe",
+    
+    
+    // ====================== Code Runner 核心配置 ======================
+    // 定义不同编程语言的执行命令（这里只配置C/C++，最常用）
     "code-runner.executorMap": {
-        "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt.exe && $dir$fileNameWithoutExt.exe",
-        "cpp": "cd $dir && g++ $fileName -o $fileNameWithoutExt.exe && $dir$fileNameWithoutExt.exe"
+        // C语言运行命令：强制生成.exe + 控制台程序，彻底解决无后缀/WinMain报错
+        // 命令拆解：切换目录 → 编译代码(带控制台参数) → 运行程序
+        "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt.exe -mconsole && $dir$fileNameWithoutExt.exe",
+        // C++语言运行命令（和C配置一致，备用）
+        "cpp": "cd $dir && g++ $fileName -o $fileNameWithoutExt.exe -mconsole && $dir$fileNameWithoutExt.exe"
     },
+    // ====================== 界面优化配置 ======================
+    // 开启：代码运行结果输出在VSCode内置终端（不弹黑窗口，无乱码）
+    "code-runner.runInTerminal": true,
+    // 开启：每次运行前清空上一次的输出结果，终端界面更整洁
+    "code-runner.clearPreviousOutput": false,
+    // ====================== 兼容配置 ======================
+    // 关闭：支持文件路径包含中文、空格（解决中文路径报错）
+    "code-runner.respectShebang": false,
+
+
+    // ====================== 解决中文乱码 ======================
+    // 终端默认使用UTF-8编码
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+        "source": "PowerShell",
+        "args": ["-NoExit", "/c", "chcp 65001"]
+        }
+    },
+    // 文件默认保存为UTF-8编码
+    "files.encoding": "utf8",
+    "files.autoGuessEncoding": true
 }
