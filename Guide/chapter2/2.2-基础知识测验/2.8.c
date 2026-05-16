@@ -1,0 +1,7 @@
+#include <stdio.h>
+int main(void){
+    int x = 0, y = 0, z = 0;
+    z = (x == 1) && (y = 2);
+    printf("%d",y);
+    return 0;
+}
