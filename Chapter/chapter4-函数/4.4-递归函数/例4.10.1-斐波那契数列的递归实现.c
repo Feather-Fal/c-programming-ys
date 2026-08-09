@@ -1,4 +1,4 @@
-/* 例4_10.c */
+/* 例4_10_1.c */
 #include <stdio.h>
 #include <time.h>
 int fib(int n);
